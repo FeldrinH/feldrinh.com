@@ -19,11 +19,11 @@ function escapeDashes(value: string) {
 
 <div class="container">
 	<span class="content">
-		<a href={href} class="text-link">{title}</a>
+		<a href={href} class="title">{title}</a>
 		{
 			github && (
-				<a title={github} href={`https://github.com/${github}`}>
-					<img alt="GitHub" src={`https://img.shields.io/badge/GitHub-${escapeDashes(getRepoName(github))}-blue`} class="badge" />
+				<a href={`https://github.com/${github}`}>
+					<img alt={`GitHub (${github})`} src={`https://img.shields.io/badge/GitHub-${escapeDashes(getRepoName(github))}-blue`} class="badge" />
 				</a>
 			)
 		}
@@ -41,15 +41,10 @@ function escapeDashes(value: string) {
 		padding: 10px;
 		font-weight: 600;
 	}
-	.text-link {
-		text-decoration: none;
+	.title {
 		margin-right: 0.2em;
 	}
-	.text-link:hover {
-		text-decoration: underline;
-	}
 	.badge {
-		display: inline;
 		vertical-align: middle;
 	}
 </style>

@@ -1,0 +1,55 @@
+---
+interface Props {
+	title: string;
+	//body: string;
+	href: string;
+	github?: string;
+}
+
+const { title, href, github } = Astro.props;
+
+function getRepoName(slug: string) {
+	return slug.split("/").at(-1)!;
+}
+
+function escapeDashes(value: string) {
+	return value.replaceAll("-", "--");
+}
+---
+
+<div class="container">
+	<span class="content">
+		<a href={href} class="text-link">{title}</a>
+		{
+			github && (
+				<a title={github} href={`https://github.com/${github}`}>
+					<img alt="GitHub" src={`https://img.shields.io/badge/GitHub-${escapeDashes(getRepoName(github))}-blue`} class="badge" />
+				</a>
+			)
+		}
+	</span>
+</div>
+
+<style>
+	.container {
+		margin: 0.8rem 0;
+	}
+	.content {
+		display: inline-block;
+		border: 1px solid darkgray;
+		border-radius: 10px;
+		padding: 10px;
+		font-weight: 600;
+	}
+	.text-link {
+		text-decoration: none;
+		margin-right: 0.2em;
+	}
+	.text-link:hover {
+		text-decoration: underline;
+	}
+	.badge {
+		display: inline;
+		vertical-align: middle;
+	}
+</style>
